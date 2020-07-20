@@ -17,7 +17,7 @@ const CheckoutForm = (props) => {
 
   const [setShowSuccessMessage, showSuccessMessage, handleChanges, values, handleSubmit ] = useForm(
     {
-      firstName:"",
+      firstName:"Chris",
       lastName: ""
     },
     cb
@@ -74,7 +74,7 @@ const CheckoutForm = (props) => {
       {showSuccessMessage && (
         <div className="success-message" data-testid="successMessage">
           <p>
-            You have ordered some plants! Woo-hoo! <span role="img">🎉</span>
+            {`You have ordered some plants ${values.firstName}! Woo-hoo!`} <span role="img">🎉</span>
           </p>
           <p>Your new green friends will be shipped to:</p>
           <br />
