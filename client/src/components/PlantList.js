@@ -3,13 +3,50 @@ import axios from "axios";
 
 export default class PlantList extends Component {
   // add state with a property called "plants" - initialize as an empty array
+ state =  {
+   plants: []
+ }
 
   // when the component mounts:
   //   - fetch data from the server endpoint - http://localhost:3333/plants
   //   - set the returned plants array to this.state.plants
+  
+  componentDidMount() {
+    axios
+    .get("http://localhost:3333/plants")
+    .then(res => { 
+      this.state.plants = res.data.plantsData
+     
+     
+       
+      // console.log("rh:plantlist", res.data)
+    })
+    .catch(error => console.log(error));
+  };
+    
+
+
+
+  
+ 
+  // getPlants = plant => {
+  //   fetch(`http://localhost:3333/plants`)
+  //     .then(res => res.json())
+  //     .then(plant => {
+  //       console.log("rh: plantlist.js componentDidMount JSON res", plant);
+  //       this.setState({ plants: plant });
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //       this.setState({ plants: [] });
+  //     });
+  // };
+
 
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
+ 
   render() {
+    console.log(this.state.plants);
     return (
       <main className="plant-list">
         {this.state?.plants?.map((plant) => (
@@ -34,6 +71,11 @@ export default class PlantList extends Component {
           </div>
         ))}
       </main>
+
+
     );
+    
   }
+  
 }
+
